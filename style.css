@@ -91,3 +91,78 @@ a:hover {
     color: #0056b3;
     text-decoration: underline;
 }
+
+
+/* Animation for sections */
+.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Two-column layout */
+.container {
+    display: flex;
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.left-column {
+    flex: 0 0 200px; /* Fixed width for left column */
+    padding-right: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    margin-right: 20px;
+}
+
+.left-column h2 {
+    font-size: 1.2em;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+}
+
+.left-column a {
+    display: block;
+    padding: 10px 0;
+    color: #333;
+    text-decoration: none;
+}
+
+.left-column a:hover {
+    background-color: #f0f0f0;
+}
+
+.right-column {
+    flex: 1; /* Takes remaining space */
+}
+
+/* Adjust section styles for right column */
+.right-column section {
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.right-column section h2 {
+    display: none; /* Hide section titles in right column */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-column {
+        flex: none;
+        width: 100%;
+        padding-right: 0;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .right-column section h2 {
+        display: block; /* Show section titles on small screens */
+    }
+}
