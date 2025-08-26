@@ -1,0 +1,93 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background: #fff;
+    color: #333;
+    padding: 2rem 0;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+header p {
+    margin: 0;
+    color: #666;
+}
+
+main {
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 800px;
+}
+
+section {
+    background: #fff;
+    margin-bottom: 30px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+h2 {
+    font-size: 1.8em;
+    border-bottom: 3px solid #333;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+h3 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.experience-item, .project-item {
+    margin-bottom: 30px;
+}
+
+.experience-item:last-child, .project-item:last-child {
+    margin-bottom: 0;
+}
+
+strong {
+    font-weight: 600;
+}
+
+ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #777;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
