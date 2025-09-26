@@ -1,21 +1,101 @@
-// script.js
+document.addEventListener("DOMContentLoaded", () => {
+    fetch("portfolio_data.json")
+        .then(response => response.json())
+        .then(data => {
+            // Header
+            document.title = data.title;
+            document.querySelector("header h1").textContent = data.title;
+            document.querySelector("header p").textContent = `최종 업데이트: ${data.lastUpdated}`;
 
-document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('section');
+            // Profile
+            const profileSection = document.getElementById("profile");
+            const profileContent = `
+                <p><strong>이름:</strong> ${data.profile.name}</p>
+                <p><strong>이메일:</strong> <a href="mailto:${data.profile.email}">${data.profile.email}</a></p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/${data.profile.github}" target="_blank">github.com/${data.profile.github}</a></p>
+            `;
+            profileSection.insertAdjacentHTML('beforeend', profileContent);
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
+            // Introduce
+            const introduceSection = document.getElementById("introduce");
+            const introduceContent = `<p>${data.introduce.replace(/\n/g, '<br>')}</p>`;
+            introduceSection.insertAdjacentHTML('beforeend', introduceContent);
 
-    sections.forEach(section => {
-        section.style.opacity = 0;
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
-        observer.observe(section);
-    });
+            // Skills
+            const skillsSection = document.getElementById("skills");
+            const skillsContent = `
+                <h3>Languages</h3>
+                <ul>${data.skills.languages.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                <h3>Frameworks & Libraries</h3>
+                <ul>${data.skills.frameworks_libraries.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                <h3>Infrastructure & Databases</h3>
+                <ul>${data.skills.infrastructure_databases.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                <h3>Tools & IDEs</h3>
+                <ul>${data.skills.tools_ides.map(skill => `<li>${skill}</li>`).join('')}</ul>
+            `;
+            skillsSection.insertAdjacentHTML('beforeend', skillsContent);
+
+            // Experience
+            const experienceSection = document.getElementById("experience");
+            let experienceContent = '';
+            data.experience.forEach(item => {
+                experienceContent += `
+                    <div class="experience-item">
+                        <h3>${item.company}</h3>
+                        <p><strong>${item.period}</strong> | ${item.role}</p>
+                        ${item.description ? `<h4>${item.description}</h4>` : ''}
+                        <ul>
+                            ${item.details.map(detail => `<li>${detail}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+            experienceSection.insertAdjacentHTML('beforeend', experienceContent);
+
+            // Projects
+            const projectsSection = document.getElementById("projects");
+            let projectsContent = '';
+            data.projects.forEach(item => {
+                projectsContent += `
+                    <div class="project-item">
+                        <h3>${item.name}</h3>
+                        <p><strong>프로젝트 요약:</strong> ${item.summary}</p>
+                        <p><strong>담당 역할:</strong> ${item.role}</p>
+                        <p><strong>주요 활동 및 성과:</strong></p>
+                        <ul>
+                            ${item.achievements.map(achieve => `<li>${achieve}</li>`).join('')}
+                        </ul>
+                        <p><strong>사용 기술:</strong> ${item.techStack}</p>
+                        ${item.link.url ? `<p><a href="${item.link.url}" target="_blank">${item.link.name}</a></p>` : ''}
+                    </div>
+                `;
+            });
+            projectsSection.insertAdjacentHTML('beforeend', projectsContent);
+
+            // Education
+            const educationSection = document.getElementById("education");
+            let educationContent = '';
+            data.education.forEach(item => {
+                educationContent += `
+                    <div class="education-item">
+                        <h3>${item.school}</h3>
+                        <p><strong>${item.major}</strong> | ${item.period}</p>
+                        ${item.details ? `<ul>${item.details.map(detail => `<li>${detail}</li>`).join('')}</ul>` : ''}
+                    </div>
+                `;
+            });
+            educationSection.insertAdjacentHTML('beforeend', educationContent);
+
+            // Contact
+            const contactSection = document.getElementById("contact");
+            const contactContent = `
+                <p>언제든지 편하게 연락주세요.</p>
+                <p><strong>이메일:</strong> <a href="mailto:${data.contact.email}">${data.contact.email}</a></p>
+            `;
+            contactSection.insertAdjacentHTML('beforeend', contactContent);
+
+            // Footer
+            document.querySelector("footer p").textContent = `© ${new Date().getFullYear()} ${data.footer.copyright}. All rights reserved.`;
+        })
+        .catch(error => console.error("Error fetching portfolio data:", error));
 });
