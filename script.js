@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <ul>
                             ${item.achievements.map(achieve => `<li>${achieve}</li>`).join('')}
                         </ul>
-                        <p><strong>사용 기술:</strong> ${item.techStack}</p>
+                        <p><strong>사용 기술:</strong><br>${Object.entries(item.techStack).map(([category, skills]) => `<strong>${category}:</strong> ${skills}`).join('<br>')}</p>
                         ${item.link.url ? `<p><a href="${item.link.url}" target="_blank">${item.link.name || item.link.url}</a></p>` : ''}
                     </div>
                 `;

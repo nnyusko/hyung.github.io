@@ -52,7 +52,7 @@
   "experience": [
     {
       "company": "주식회사매이드",
-      "period": "2023.10 - 재직 중 (1년 2개월)",
+      "period": "2023.10 - 2024.11 (1년 2개월)",
       "role": "정규직",
       "description": "해외 기술 교류 및 전시 기획/운영",
       "details": [
@@ -97,7 +97,11 @@
         "Vite를 도입하여 프론트엔드 개발 환경을 최적화, 개발 서버 시작 속도를 99% 향상시켜 개발 생산성 극대화.",
         "Git을 활용한 체계적인 버전 관리 및 팀 협업 수행."
       ],
-      "techStack": "언어/프레임워크: Python, FastAPI, React, TypeScript, React Native (Expo); AI / 데이터: Google Gemini (LLM), MediaPipe, OpenCV, SQLite, PostgreSQL; 개발/배포 도구: Docker, Docker Compose, Vite, Git, Github",
+      "techStack": {
+        "언어/프레임워크": "Python, FastAPI, React, TypeScript, React Native (Expo)",
+        "AI / 데이터": "Google Gemini (LLM), MediaPipe, OpenCV, SQLite, PostgreSQL",
+        "개발/배포 도구": "Docker, Docker Compose, Vite, Git, Github"
+      },
       "link": {
         "url": "",
         "name": ""
@@ -115,7 +119,11 @@
         "Git-flow 전략을 도입하여 Github 기반의 체계적인 버전 관리 및 팀 협업 주도",
         "데이터 분석 부트캠프 최종 프로젝트 발표 1위 수상"
       ],
-      "techStack": "언어/프레임워크: Python, Pandas, Scikit-learn, Streamlit; 클라우드/AI: Microsoft Azure, OpenAI API(LLM); 개발/협업 도구: Docker, Linux(Ubuntu), Github",
+      "techStack": {
+        "언어/프레임워크": "Python, Pandas, Scikit-learn, Streamlit",
+        "클라우드/AI": "Microsoft Azure, OpenAI API(LLM)",
+        "개발/협업 도구": "Docker, Linux(Ubuntu), Github"
+      },
       "link": {
         "url": "",
         "name": ""
