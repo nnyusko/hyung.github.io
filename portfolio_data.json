@@ -1,16 +1,16 @@
 {
   "title": "박세형 포트폴리오",
-  "lastUpdated": "2025. 08. 26.",
-  "profile": {
-    "name": "박세형",
-    "email": "qkrtpgud@gmail.com",
-    "github": "nnyusko",
-    "blog": {
-      "url": "",
-      "name": ""
-    }
-  },
-  "introduce": "안녕하세요. 데이터를 좋아하는 공대생 박세형입니다. 학부 시절 진행한 열유체 해석 프로젝트를 계기로 데이터 분석 및 해석 역량을 쌓아왔습니다. 제조 엔지니어링, 커머스 프로덕트 PM, 기구 설계 연구원 등 다양한 커리어를 경험했으며, 데이터 기반 커리어를 쌓아가고자 합니다.",
+  "lastUpdated": "2025. 09. 26.",
+      "profile": {
+          "name": "박세형",
+          "email": "qkrtpgud@gmail.com",
+          "github": "nnyusko",
+          "image": "assets/박세형.jpg",
+          "blog": {
+              "url": "",
+              "name": ""
+          }
+      },  "introduce": "안녕하세요. 데이터를 좋아하는 공대생 박세형입니다. 학부 시절 진행한 열유체 해석 프로젝트를 계기로 데이터 분석 및 해석 역량을 쌓아왔습니다. 제조 엔지니어링, 커머스 프로덕트 PM, 기구 설계 연구원 등 다양한 커리어를 경험했으며, 데이터 기반 커리어를 쌓아가고자 합니다.",
   "skills": {
     "languages": [
       "Python",

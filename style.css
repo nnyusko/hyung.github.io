@@ -43,6 +43,17 @@ section {
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    display: block;
+    border: 5px solid #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
 h2 {
     font-size: 1.8em;
     border-bottom: 3px solid #333;

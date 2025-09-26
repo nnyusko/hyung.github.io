@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Profile
             const profileSection = document.getElementById("profile");
             const profileContent = `
+                <img src="${data.profile.image}" alt="프로필 사진" class="profile-pic">
                 <p><strong>이름:</strong> ${data.profile.name}</p>
                 <p><strong>이메일:</strong> <a href="mailto:${data.profile.email}">${data.profile.email}</a></p>
                 <p><strong>GitHub:</strong> <a href="https://github.com/${data.profile.github}" target="_blank">github.com/${data.profile.github}</a></p>
