@@ -36,6 +36,7 @@ main {
 }
 
 section {
+    scroll-margin-top: 80px; /* Adjust scroll position for anchor links */
     background: #fff;
     margin-bottom: 30px;
     padding: 30px;
