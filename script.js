@@ -144,8 +144,39 @@ document.addEventListener("DOMContentLoaded", () => {
             // Footer
             document.querySelector("footer p").textContent = `© ${new Date().getFullYear()} ${data.footer.copyright}. All rights reserved.`;
 
-            // After populating the data, set up the animations
+            // After populating the data, set up the animations and navigation
             setupScrollAnimations();
+            setupScrollNav();
         })
         .catch(error => console.error("Error fetching or processing portfolio data:", error));
+
+    // Function to set up scroll-to-top navigation
+    const setupScrollNav = () => {
+        const nav = document.getElementById("scroll-nav");
+        const sections = document.querySelectorAll("main section[id]");
+
+        sections.forEach(section => {
+            const link = document.createElement("a");
+            link.href = `#${section.id}`;
+            link.textContent = section.querySelector("h2").textContent;
+            nav.appendChild(link);
+        });
+
+        // Highlight active link on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll("#scroll-nav a").forEach(a => a.classList.remove("active"));
+                    const activeLink = document.querySelector(`#scroll-nav a[href="#${entry.target.id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add("active");
+                    }
+                }
+            });
+        }, { rootMargin: "-50% 0px -50% 0px" });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    };
 });
