@@ -51,7 +51,7 @@
   },
   "experience": [
     {
-      "company": "주식회사매이드",
+      "company": "주식회사 매이드",
       "period": "2023.10 - 2024.11 (1년 2개월)",
       "role": "정규직",
       "description": "해외 기술 교류 및 전시 기획/운영",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "company": "주식회사 미리디",
+      "company": "(주) 미리디",
       "period": "2023.05 - 2023.10 (6개월)",
       "role": "계약직",
       "description": "상품별 매출 관리, Top Line 상품 옵션 조합 분석",
@@ -85,7 +85,7 @@
   ],
   "projects": [
     {
-      "name": "AI 사주 관상 서비스",
+      "name": "[Microsoft AI School Project 2] AI 사주 관상 서비스",
       "summary": "전통 명리학(사주, 궁합, 관상)과 최신 AI 기술을 융합하여 사용자 맞춤형 운세 분석을 제공하는 Full-Stack 웹/앱 플랫폼을 기획, 개발 및 배포한 프로젝트. 독립적으로 확장 가능한 마이크로서비스 아키텍처를 도입하여 서비스 안정성과 개발 효율성을 극대화함.",
       "role": "Full-Stack 개발 및 AI 통합 리드",
       "achievements": [
@@ -108,7 +108,7 @@
       }
     },
     {
-      "name": "공픽",
+      "name": "[Microsoft AI School Project 1] 공픽(GongPick)",
       "summary": "광고성 리뷰 문제를 해결하기 위해, 공공 데이터를 활용하여 신뢰도 100%의 맛집 추천 AI 웹 서비스를 기획, 개발 및 배포한 프로젝트",
       "role": "Product Manager (PM) 및 데이터 분석/개발 총괄",
       "achievements": [
