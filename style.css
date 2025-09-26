@@ -88,8 +88,7 @@ h3 {
 /* Separator lines for items */
 .experience-item:not(:last-child),
 .education-item:not(:last-child),
-.project-item:not(:last-child) {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ccc;
     padding-bottom: 30px;
 }
 
