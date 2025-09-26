@@ -51,17 +51,6 @@
   },
   "experience": [
     {
-      "company": "Microsoft AI School",
-      "period": "2025.05 - 2025.08 (4개월)",
-      "role": "프리랜서",
-      "description": "Azure 클라우드 환경 개발 및 Python 기초부터 머신러닝/딥러닝, 그리고 LLM을 활용한 AI 서비스 개발 및 배포까지, AI 개발의 전 과정에 대한 이론과 실무 역량을 종합적으로 학습한 과정.",
-      "details": [
-          "프로그래밍 및 데이터 분석 기초: Python, Git, SQL을 활용한 프로그래밍 및 데이터 핸들링; Pandas, Matplotlib 등을 활용한 데이터 분석 및 시각화",
-          "머신러닝 및 딥러닝 모델링: 회귀, 분류 등 전통적인 머신러닝 모델 개발 및 성능 평가; Pytorch 기반의 딥러닝(DNN, CNN, RNN) 모델 설계 및 학습",
-          "최신 AI 기술 및 서비스 개발: Azure OpenAI, DALL-E 를 활용한 LLM 기반 챗봇 및 이미지 생성 AI 서비스 개발; LoRA 기법을 활용한 AI 모델 미세조정(Fine-tuning) 및 커스터마이징"
-      ]
-    },
-    {
       "company": "주식회사매이드",
       "period": "2023.10 - 재직 중 (1년 2개월)",
       "role": "정규직",
@@ -91,18 +80,6 @@
         "BMS, 파워 인버터 등을 연구소, 대학교 납품 및 판매",
         "물류 지원",
         "BOM 관리"
-      ]
-    },
-    {
-      "company": "멀티캠퍼스",
-      "period": "2022.11 - 2023.05 (7개월)",
-      "role": "프리랜서",
-      "description": "최종 프로젝트 1등 - 머신러닝 기반 카드 추천 시스템",
-      "details": [
-        "시장 조사 및 현황 분석",
-        "소비 패턴 Segmentation",
-        "Python 크롤링, 머신러닝 코드 구현 및 알고리즘 고도화",
-        "Streamlit 시각화"
       ]
     }
   ],
