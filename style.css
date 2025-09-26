@@ -85,6 +85,14 @@ h3 {
     margin-bottom: 0;
 }
 
+/* Separator lines for items */
+.experience-item:not(:last-child),
+.education-item:not(:last-child),
+.project-item:not(:last-child) {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 30px;
+}
+
 strong {
     font-weight: 600;
 }
