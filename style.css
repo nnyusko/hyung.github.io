@@ -182,4 +182,14 @@ a:hover {
     .right-column section h2 {
         display: block; /* Show section titles on small screens */
     }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
 }

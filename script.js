@@ -57,14 +57,24 @@ document.addEventListener("DOMContentLoaded", () => {
             // Skills
             const skillsSection = document.getElementById("skills");
             const skillsContent = `
-                <h3>Languages</h3>
-                <ul>${data.skills.languages.map(skill => `<li>${skill}</li>`).join('')}</ul>
-                <h3>Frameworks & Libraries</h3>
-                <ul>${data.skills.frameworks_libraries.map(skill => `<li>${skill}</li>`).join('')}</ul>
-                <h3>Infrastructure & Databases</h3>
-                <ul>${data.skills.infrastructure_databases.map(skill => `<li>${skill}</li>`).join('')}</ul>
-                <h3>Tools & IDEs</h3>
-                <ul>${data.skills.tools_ides.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Frameworks & Libraries</h3>
+                        <ul>${data.skills.frameworks_libraries.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & IDEs</h3>
+                        <ul>${data.skills.tools_ides.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <ul>${data.skills.languages.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Infrastructure & Databases</h3>
+                        <ul>${data.skills.infrastructure_databases.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                </div>
             `;
             skillsSection.insertAdjacentHTML('beforeend', skillsContent);
 
