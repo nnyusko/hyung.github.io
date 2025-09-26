@@ -1,6 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Function to handle scroll animations
+    const setupScrollAnimations = () => {
+        const sections = document.querySelectorAll("section");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("section-visible");
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the section is visible
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    };
+
+    // Fetch data and populate the page
     fetch("portfolio_data.json")
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             // Header
             document.title = data.title;
@@ -18,7 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Introduce
             const introduceSection = document.getElementById("introduce");
-            const introduceContent = `<p>${data.introduce.replace(/\n/g, '<br>')}</p>`;
+            // Preserve line breaks from JSON
+            const introduceContent = data.introduce.split('\n\n').map(paragraph => 
+                `<p>${paragraph.replace(/\n/g, '<br>')}</p>`
+            ).join('');
             introduceSection.insertAdjacentHTML('beforeend', introduceContent);
 
             // Skills
@@ -44,9 +72,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h3>${item.company}</h3>
                         <p><strong>${item.period}</strong> | ${item.role}</p>
                         ${item.description ? `<h4>${item.description}</h4>` : ''}
-                        <ul>
-                            ${item.details.map(detail => `<li>${detail}</li>`).join('')}
-                        </ul>
+                        ${item.details && item.details.length > 0 ? 
+                            `<ul>
+                                ${item.details.map(detail => `<li>${detail}</li>`).join('')}
+                            </ul>` : ''
+                        }
                     </div>
                 `;
             });
@@ -66,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             ${item.achievements.map(achieve => `<li>${achieve}</li>`).join('')}
                         </ul>
                         <p><strong>사용 기술:</strong> ${item.techStack}</p>
-                        ${item.link.url ? `<p><a href="${item.link.url}" target="_blank">${item.link.name}</a></p>` : ''}
+                        ${item.link.url ? `<p><a href="${item.link.url}" target="_blank">${item.link.name || item.link.url}</a></p>` : ''}
                     </div>
                 `;
             });
@@ -80,7 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="education-item">
                         <h3>${item.school}</h3>
                         <p><strong>${item.major}</strong> | ${item.period}</p>
-                        ${item.details ? `<ul>${item.details.map(detail => `<li>${detail}</li>`).join('')}</ul>` : ''}
+                        ${item.details && item.details.length > 0 ? 
+                            `<ul>${item.details.map(detail => `<li>${detail}</li>`).join('')}</ul>` : ''
+                        }
                     </div>
                 `;
             });
@@ -96,6 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Footer
             document.querySelector("footer p").textContent = `© ${new Date().getFullYear()} ${data.footer.copyright}. All rights reserved.`;
+
+            // After populating the data, set up the animations
+            setupScrollAnimations();
         })
-        .catch(error => console.error("Error fetching portfolio data:", error));
+        .catch(error => console.error("Error fetching or processing portfolio data:", error));
 });
