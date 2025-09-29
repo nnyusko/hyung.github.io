@@ -99,8 +99,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Projects
             const projectsSection = document.getElementById("projects");
-            // Clear existing content and add grid
-            projectsSection.innerHTML = ''; 
+
+            // Create the title
+            const projectTitle = document.createElement('h2');
+            projectTitle.textContent = 'Projects';
+
+            // Create the grid
             const projectsGrid = document.createElement('div');
             projectsGrid.className = 'projects-grid';
 
@@ -130,7 +134,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
                 projectsGrid.appendChild(card);
             });
-            projectsSection.appendChild(projectsGrid);
+
+            // Replace section content with the new title and grid
+            projectsSection.replaceChildren(projectTitle, projectsGrid);
 
             // Education
             const educationSection = document.getElementById("education");
