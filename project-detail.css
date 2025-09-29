@@ -1,164 +1,216 @@
 /* General Body Styles */
 body {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
+    background-color: #f8f9fa;
+    color: #212529;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
 /* Header Styles */
 header {
     background-color: #ffffff;
-    padding: 20px 40px;
-    border-bottom: 1px solid #ddd;
+    padding: 15px 40px;
+    border-bottom: 1px solid #dee2e6;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.8em;
-    color: #2c3e50;
+    font-size: 1.5em;
+    color: #343a40;
 }
 
 header a {
     text-decoration: none;
-    color: #3498db;
+    color: #007bff;
     font-weight: 600;
     transition: color 0.3s;
 }
 
 header a:hover {
-    color: #2980b9;
+    color: #0056b3;
 }
 
-/* Main Content Styles */
-main {
-    flex: 1;
-    padding: 40px;
-    max-width: 900px;
-    margin: 0 auto;
-    width: 100%;
+/* Main Layout */
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    gap: 30px;
+    padding: 0 20px;
 }
 
-/* Project Detail Container */
-.project-container {
+/* --- Left Column (Sticky Summary) --- */
+.summary-container {
+    width: 350px;
+    flex-shrink: 0;
+}
+
+.summary-box {
+    position: sticky;
+    top: 120px; /* Adjust based on header height */
     background-color: #fff;
-    padding: 40px;
+    border: 1px solid #e9ecef;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-/* Project Header */
-.project-header h1 {
-    font-size: 2.5em;
+.summary-box h1 {
+    font-size: 2em;
+    margin-top: 0;
     margin-bottom: 10px;
-    color: #2c3e50;
 }
 
-.project-header .role {
-    font-size: 1.2em;
-    color: #555;
+.summary-box .role {
+    font-size: 1.1em;
+    color: #6c757d;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.summary-section {
     margin-bottom: 20px;
 }
 
-/* Presentation Link Button */
-.project-header .presentation-link {
-    display: inline-block;
-    background-color: #3498db;
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 15px;
-    transition: background-color 0.3s;
-}
-
-.project-header .presentation-link:hover {
-    background-color: #2980b9;
-    color: #ffffff;
-}
-
-
-/* Section Styles */
-.project-section {
-    margin-bottom: 30px;
-}
-
-.project-section h2 {
-    font-size: 1.6em;
-    color: #34495e;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-}
-
-/* Summary/Description Styles */
-.project-section p {
-    line-height: 1.8;
-    font-size: 1.1em;
-}
-
-/* Achievements/Details List */
-.project-section ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.project-section ul li {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-left: 4px solid #3498db;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    line-height: 1.7;
-}
-
-/* Tech Stack Styles */
-.tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.tech-category {
-    flex: 1;
-    min-width: 250px;
-}
-
-.tech-category h3 {
+.summary-section h3 {
     font-size: 1.2em;
-    color: #555;
+    color: #343a40;
     margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
 }
 
-.tech-category span {
-    display: inline-block;
-    background-color: #e0e0e0;
-    color: #333;
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 0.95em;
-    margin-right: 8px;
+.summary-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.summary-section ul li {
     margin-bottom: 8px;
 }
 
+.tech-stack-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tech-stack-grid span {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.project-links a {
+    display: block;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.project-links a:hover {
+    background-color: #0056b3;
+}
+
+.project-links a.github {
+    background-color: #343a40;
+}
+
+.project-links a.github:hover {
+    background-color: #23272b;
+}
+
+
+/* --- Right Column (Main Content) --- */
+.content-container {
+    flex-grow: 1;
+    background-color: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.content-section {
+    margin-bottom: 40px;
+}
+
+.content-section h2 {
+    font-size: 1.8em;
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+.content-section p, .content-section ul {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #495057;
+}
+
+.content-section ul {
+    padding-left: 20px;
+}
+
+.how-steps .step {
+    margin-bottom: 25px;
+}
+
+.how-steps h4 {
+    font-size: 1.3em;
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+.result-section {
+    border-top: 1px solid #dee2e6;
+    padding-top: 20px;
+}
+
+.result-section .highlight {
+    background-color: #fff3cd;
+    padding: 20px;
+    border-radius: 5px;
+    border-left: 5px solid #ffc107;
+    margin-bottom: 20px;
+}
 
 /* Footer Styles */
 footer {
     text-align: center;
-    padding: 20px;
-    background-color: #ffffff;
-    border-top: 1px solid #ddd;
-    color: #777;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    color: #6c757d;
     font-size: 0.9em;
+    margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+    }
+    .summary-container {
+        width: 100%;
+    }
+    .summary-box {
+        position: static;
+    }
 }

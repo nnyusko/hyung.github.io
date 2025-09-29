@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로젝트 상세</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="project-detail.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 </head>
@@ -14,14 +13,19 @@
         <a href="index.html">← 홈으로 돌아가기</a>
     </header>
 
-    <main>
-        <div class="project-container">
-            <!-- 프로젝트 상세 내용이 여기에 동적으로 삽입됩니다. -->
-        </div>
-    </main>
+    <div class="container">
+        <aside class="summary-container">
+            <div class="summary-box">
+                <!-- Sticky Summary Box: Key Info -->
+            </div>
+        </aside>
+        <main class="content-container">
+            <!-- Main Content: Details -->
+        </main>
+    </div>
 
     <footer>
-        <!-- 푸터 내용이 여기에 동적으로 삽입됩니다. -->
+        <!-- Footer -->
     </footer>
 
     <script>
@@ -29,70 +33,84 @@
             fetch('portfolio_data.json')
                 .then(response => response.json())
                 .then(data => {
-                    // 프로젝트 이름에 "공픽"이 포함된 프로젝트 찾기
-                    const project = data.projects.find(p => p.name.includes('공픽'));
+                    const project = data.projects.find(p => p.id === 'gongpick');
 
                     if (project) {
-                        // 헤더 제목 설정
+                        // --- Header & Page Title ---
                         document.querySelector('header h1').textContent = data.title;
-                        
-                        // 페이지 제목 설정
                         document.title = project.name;
 
-                        const container = document.querySelector('.project-container');
-
-                        // Tech Stack 렌더링 함수
-                        const renderTechStack = (techStack) => {
-                            let techHtml = '<div class="tech-stack">';
-                            for (const category in techStack) {
-                                techHtml += `
-                                    <div class="tech-category">
-                                        <h3>${category}</h3>
-                                        ${techStack[category].split(',').map(tech => `<span>${tech.trim()}</span>`).join('')}
-                                    </div>
-                                `;
-                            }
-                            techHtml += '</div>';
-                            return techHtml;
-                        };
-                        
-                        container.innerHTML = `
-                            <div class="project-header">
-                                <h1>${project.name}</h1>
-                                <p class="role">${project.role}</p>
-                                <a href="https://drive.google.com/file/d/1MlkNpsgQA2KgYvox2I221khi12LIUe00/view?usp=sharing" target="_blank" class="presentation-link">발표 자료 보기</a>
-                            </div>
-
-                            <div class="project-section">
-                                <h2>프로젝트 요약</h2>
-                                <p>${project.summary}</p>
-                            </div>
-
-                            <div class="project-section">
-                                <h2>주요 성과</h2>
+                        // --- Left Column: Summary Box ---
+                        const summaryBox = document.querySelector('.summary-box');
+                        summaryBox.innerHTML = `
+                            <h1>${project.name}</h1>
+                            <p class="role">${project.role}</p>
+                            <div class="summary-section">
+                                <h3>Key Achievements</h3>
                                 <ul>
-                                    ${project.achievements.map(item => `<li>${item}</li>`).join('')}
+                                    <li>데이터 분석 부트캠프 최종 프로젝트 1위 수상</li>
+                                    <li>공공 데이터 가공 및 새로운 가치 창출</li>
+                                    <li>아이디어 기획부터 서비스 배포까지 전 과정 주도</li>
                                 </ul>
                             </div>
-
-                            <div class="project-section">
-                                <h2>사용 기술</h2>
-                                ${renderTechStack(project.techStack)}
+                            <div class="summary-section">
+                                <h3>Tech Stack</h3>
+                                <div class="tech-stack-grid">
+                                    ${Object.values(project.techStack).join(', ').split(',').map(tech => `<span>${tech.trim()}</span>`).join('')}
+                                </div>
+                            </div>
+                            <div class="summary-section project-links">
+                                <a href="${project.presentationLink}" target="_blank">발표 자료 보기</a>
+                                <!-- <a href="#" target="_blank" class="github">GitHub 저장소</a> -->
                             </div>
                         `;
 
-                        // 푸터 설정
-                        const footer = document.querySelector('footer');
-                        footer.innerHTML = `
-                            <p>&copy; ${new Date().getFullYear()} ${data.footer.copyright}. All rights reserved.</p>
+                        // --- Right Column: Main Content ---
+                        const mainContent = document.querySelector('.content-container');
+                        mainContent.innerHTML = `
+                            <div class="content-section">
+                                <h2>What? (프로젝트 개요)</h2>
+                                <p><strong>${project.summary}</strong> ${project.what}</p>
+                            </div>
+                            <div class="content-section">
+                                <h2>Why? (프로젝트 동기)</h2>
+                                <p>${project.why}</p>
+                            </div>
+                            <div class="content-section">
+                                <h2>Goal (프로젝트 목표)</h2>
+                                <ul>
+                                    ${project.goal.map(item => `<li>${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="content-section how-steps">
+                                <h2>How? (프로젝트 해결 방법)</h2>
+                                ${project.how.map(step => `
+                                    <div class="step">
+                                        <h4>${step.title}</h4>
+                                        <p>${step.description}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="content-section result-section">
+                                <h2>Result (프로젝트 결론)</h2>
+                                <div class="highlight">
+                                    <p><strong>성과:</strong> ${project.result}</p>
+                                </div>
+                                <p><strong>한계점 및 개선 방향:</strong> ${project.limitations}</p>
+                            </div>
                         `;
+
+                        // --- Footer ---
+                        const footer = document.querySelector('footer');
+                        footer.innerHTML = `<p>&copy; ${new Date().getFullYear()} ${data.footer.copyright}. All rights reserved.</p>`;
+
                     } else {
-                        document.querySelector('.project-container').innerHTML = '<p>프로젝트를 찾을 수 없습니다.</p>';
+                        document.querySelector('.container').innerHTML = '<h2>프로젝트를 찾을 수 없습니다.</h2>';
                     }
                 })
                 .catch(error => {
                     console.error('Error fetching project data:', error);
-                    document.querySelector('.project-container').innerHTML = '<p>데이터를 불러오는 중 오류가 발생했습니다.</p>';
+                    document.querySelector('.container').innerHTML = '<h2>데이터를 불러오는 중 오류가 발생했습니다.</h2>';
                 });
         });
     </script>
