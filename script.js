@@ -97,41 +97,40 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             experienceSection.insertAdjacentHTML('beforeend', experienceContent);
 
-            // Helper function to generate project URL from name
-            const getProjectUrl = (projectName) => {
-                if (projectName.includes('AI 사주')) {
-                    return 'project-ai-saju.html';
-                }
-                if (projectName.includes('공픽')) {
-                    return 'project-gongpick.html';
-                }
-                return '#'; // Fallback
-            };
-
             // Projects
             const projectsSection = document.getElementById("projects");
-            let projectsContent = '';
+            // Clear existing content and add grid
+            projectsSection.innerHTML = ''; 
+            const projectsGrid = document.createElement('div');
+            projectsGrid.className = 'projects-grid';
+
             data.projects.forEach(item => {
-                const projectUrl = getProjectUrl(item.name);
-                projectsContent += `
-                    <div class="project-item">
-                        <h3>${item.name}</h3>
-                        <p><strong>프로젝트 요약:</strong> ${item.summary}</p>
-                        <p><strong>담당 역할:</strong> ${item.role}</p>
-                        <p><strong>주요 활동 및 성과:</strong></p>
-                        <ul>
-                            ${item.achievements.slice(0, 3).map(achieve => `<li>${achieve}</li>`).join('')}
-                            ${item.achievements.length > 3 ? '<li>...</li>' : ''}
-                        </ul>
-                        <p><strong>사용 기술:</strong><br>${Object.entries(item.techStack).map(([category, skills]) => `<strong>${category}:</strong> ${skills.split(',').slice(0, 3).join(', ')}...`).join('<br>')}</p>
-                        <div class="project-links">
-                             ${item.link.url ? `<a href="${item.link.url}" target="_blank" class="external-link">${item.link.name || '관련 링크'}</a>` : ''}
-                            <a href="${projectUrl}" class="detail-link">자세히 보기 &rarr;</a>
+                const projectUrl = `project-${item.id}.html`;
+                const card = document.createElement('div');
+                card.className = 'project-card';
+
+                const techTags = Object.values(item.techStack)
+                                     .join(', ')
+                                     .split(',')
+                                     .slice(0, 4) // Show first 4 key techs
+                                     .map(tech => `<span class="tech-tag">${tech.trim()}</span>`)
+                                     .join('');
+
+                card.innerHTML = `
+                    <a href="${projectUrl}" class="card-link-wrapper">
+                        <img src="${item.image}" alt="${item.name} thumbnail" class="project-card-img">
+                        <div class="project-card-content">
+                            <h3>${item.name}</h3>
+                            <p>${item.summary}</p>
+                            <div class="project-card-tags">
+                                ${techTags}
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 `;
+                projectsGrid.appendChild(card);
             });
-            projectsSection.insertAdjacentHTML('beforeend', projectsContent);
+            projectsSection.appendChild(projectsGrid);
 
             // Education
             const educationSection = document.getElementById("education");

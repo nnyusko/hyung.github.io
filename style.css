@@ -32,7 +32,7 @@ main {
     display: block;
     margin: 0 auto;
     padding: 20px;
-    max-width: 800px;
+    max-width: 1200px; /* Increased max-width for grid */
 }
 
 section {
@@ -77,62 +77,20 @@ h3 {
     color: #333;
 }
 
-.experience-item, .project-item {
+.experience-item {
     margin-bottom: 30px;
 }
 
-.experience-item:last-child, .project-item:last-child {
+.experience-item:last-child {
     margin-bottom: 0;
 }
 
 /* Separator lines for items */
 .experience-item:not(:last-child),
-.education-item:not(:last-child),
-.project-item:not(:last-child) {
+.education-item:not(:last-child) {
     border-bottom: 1px solid #ccc;
     padding-bottom: 30px;
 }
-
-/* Project Links */
-.project-links {
-    margin-top: 20px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.external-link, .detail-link {
-    display: inline-block;
-    padding: 10px 18px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.external-link {
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-.external-link:hover {
-    background-color: #e0e0e0;
-    color: #000;
-    text-decoration: none;
-}
-
-.detail-link {
-    background-color: #007BFF;
-    color: #fff;
-}
-
-.detail-link:hover {
-    background-color: #0056b3;
-    color: #fff;
-    text-decoration: none;
-}
-
 
 strong {
     font-weight: 600;
@@ -167,78 +125,6 @@ a:hover {
 .section-visible {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* Two-column layout */
-.container {
-    display: flex;
-    max-width: 1200px; /* Adjust as needed */
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.left-column {
-    flex: 0 0 200px; /* Fixed width for left column */
-    padding-right: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-    margin-right: 20px;
-}
-
-.left-column h2 {
-    font-size: 1.2em;
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 10px;
-}
-
-.left-column a {
-    display: block;
-    padding: 10px 0;
-    color: #333;
-    text-decoration: none;
-}
-
-.left-column a:hover {
-    background-color: #f0f0f0;
-}
-
-.right-column {
-    flex: 1; /* Takes remaining space */
-}
-
-/* Adjust section styles for right column */
-.right-column section {
-    margin-bottom: 20px;
-    padding: 20px;
-}
-
-.right-column section h2 {
-    display: none; /* Hide section titles in right column */
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .left-column {
-        flex: none;
-        width: 100%;
-        padding-right: 0;
-        margin-right: 0;
-        margin-bottom: 20px;
-    }
-
-    .right-column section h2 {
-        display: block; /* Show section titles on small screens */
-    }
-
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* Scroll Navigation */
@@ -276,4 +162,92 @@ a:hover {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
+}
+
+/* --- Projects Section Grid --- */
+#projects {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.project-card a.card-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.project-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.project-card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card-content h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.project-card-content p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #555;
+    flex-grow: 1;
+}
+
+.project-card-tags {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.project-card-tags .tech-tag {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.85em;
+}
+
+
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    main {
+        padding: 10px;
+    }
 }
