@@ -199,12 +199,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const updateActiveLink = () => {
             let currentSectionId = sections[0].id;
 
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 80; // Match scroll-margin-top
-                if (window.scrollY >= sectionTop) {
-                    currentSectionId = section.id;
-                }
-            });
+            // Check if scrolled to the very bottom of the page
+            const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2; // 2px buffer
+
+            if (isAtBottom) {
+                // If at the bottom, the last section is always active
+                currentSectionId = sections[sections.length - 1].id;
+            } else {
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 80; // Match scroll-margin-top
+                    if (window.scrollY >= sectionTop) {
+                        currentSectionId = section.id;
+                    }
+                });
+            }
 
             navLinks.forEach((link, id) => {
                 if (id === currentSectionId) {
