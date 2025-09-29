@@ -97,10 +97,22 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             experienceSection.insertAdjacentHTML('beforeend', experienceContent);
 
+            // Helper function to generate project URL from name
+            const getProjectUrl = (projectName) => {
+                if (projectName.includes('AI 사주')) {
+                    return 'project-ai-saju.html';
+                }
+                if (projectName.includes('공픽')) {
+                    return 'project-gongpick.html';
+                }
+                return '#'; // Fallback
+            };
+
             // Projects
             const projectsSection = document.getElementById("projects");
             let projectsContent = '';
             data.projects.forEach(item => {
+                const projectUrl = getProjectUrl(item.name);
                 projectsContent += `
                     <div class="project-item">
                         <h3>${item.name}</h3>
@@ -108,10 +120,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p><strong>담당 역할:</strong> ${item.role}</p>
                         <p><strong>주요 활동 및 성과:</strong></p>
                         <ul>
-                            ${item.achievements.map(achieve => `<li>${achieve}</li>`).join('')}
+                            ${item.achievements.slice(0, 3).map(achieve => `<li>${achieve}</li>`).join('')}
+                            ${item.achievements.length > 3 ? '<li>...</li>' : ''}
                         </ul>
-                        <p><strong>사용 기술:</strong><br>${Object.entries(item.techStack).map(([category, skills]) => `<strong>${category}:</strong> ${skills}`).join('<br>')}</p>
-                        ${item.link.url ? `<p><a href="${item.link.url}" target="_blank">${item.link.name || item.link.url}</a></p>` : ''}
+                        <p><strong>사용 기술:</strong><br>${Object.entries(item.techStack).map(([category, skills]) => `<strong>${category}:</strong> ${skills.split(',').slice(0, 3).join(', ')}...`).join('<br>')}</p>
+                        <div class="project-links">
+                             ${item.link.url ? `<a href="${item.link.url}" target="_blank" class="external-link">${item.link.name || '관련 링크'}</a>` : ''}
+                            <a href="${projectUrl}" class="detail-link">자세히 보기 &rarr;</a>
+                        </div>
                     </div>
                 `;
             });

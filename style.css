@@ -88,9 +88,51 @@ h3 {
 /* Separator lines for items */
 .experience-item:not(:last-child),
 .education-item:not(:last-child),
+.project-item:not(:last-child) {
     border-bottom: 1px solid #ccc;
     padding-bottom: 30px;
 }
+
+/* Project Links */
+.project-links {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.external-link, .detail-link {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.external-link {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.external-link:hover {
+    background-color: #e0e0e0;
+    color: #000;
+    text-decoration: none;
+}
+
+.detail-link {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.detail-link:hover {
+    background-color: #0056b3;
+    color: #fff;
+    text-decoration: none;
+}
+
 
 strong {
     font-weight: 600;

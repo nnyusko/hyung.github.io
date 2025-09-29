@@ -1,0 +1,145 @@
+/* General Body Styles */
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styles */
+header {
+    background-color: #ffffff;
+    padding: 20px 40px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #2c3e50;
+}
+
+header a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+header a:hover {
+    color: #2980b9;
+}
+
+/* Main Content Styles */
+main {
+    flex: 1;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Project Detail Container */
+.project-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Project Header */
+.project-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.project-header .role {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Section Styles */
+.project-section {
+    margin-bottom: 30px;
+}
+
+.project-section h2 {
+    font-size: 1.6em;
+    color: #34495e;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* Summary/Description Styles */
+.project-section p {
+    line-height: 1.8;
+    font-size: 1.1em;
+}
+
+/* Achievements/Details List */
+.project-section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.project-section ul li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-left: 4px solid #3498db;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    line-height: 1.7;
+}
+
+/* Tech Stack Styles */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tech-category {
+    flex: 1;
+    min-width: 250px;
+}
+
+.tech-category h3 {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.tech-category span {
+    display: inline-block;
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.95em;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-top: 1px solid #ddd;
+    color: #777;
+    font-size: 0.9em;
+}

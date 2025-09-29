@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 상세</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="project-detail.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+</head>
+<body>
+    <header>
+        <h1></h1>
+        <a href="index.html">← 홈으로 돌아가기</a>
+    </header>
+
+    <main>
+        <div class="project-container">
+            <!-- 프로젝트 상세 내용이 여기에 동적으로 삽입됩니다. -->
+        </div>
+    </main>
+
+    <footer>
+        <!-- 푸터 내용이 여기에 동적으로 삽입됩니다. -->
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('portfolio_data.json')
+                .then(response => response.json())
+                .then(data => {
+                    // 프로젝트 이름에 "AI 사주"가 포함된 프로젝트 찾기
+                    const project = data.projects.find(p => p.name.includes('AI 사주'));
+
+                    if (project) {
+                        // 헤더 제목 설정
+                        document.querySelector('header h1').textContent = data.title;
+                        
+                        // 페이지 제목 설정
+                        document.title = project.name;
+
+                        const container = document.querySelector('.project-container');
+
+                        // Tech Stack 렌더링 함수
+                        const renderTechStack = (techStack) => {
+                            let techHtml = '<div class="tech-stack">';
+                            for (const category in techStack) {
+                                techHtml += `
+                                    <div class="tech-category">
+                                        <h3>${category}</h3>
+                                        ${techStack[category].split(',').map(tech => `<span>${tech.trim()}</span>`).join('')}
+                                    </div>
+                                `;
+                            }
+                            techHtml += '</div>';
+                            return techHtml;
+                        };
+                        
+                        container.innerHTML = `
+                            <div class="project-header">
+                                <h1>${project.name}</h1>
+                                <p class="role">${project.role}</p>
+                            </div>
+
+                            <div class="project-section">
+                                <h2>프로젝트 요약</h2>
+                                <p>${project.summary}</p>
+                            </div>
+
+                            <div class="project-section">
+                                <h2>주요 성과</h2>
+                                <ul>
+                                    ${project.achievements.map(item => `<li>${item}</li>`).join('')}
+                                </ul>
+                            </div>
+
+                            <div class="project-section">
+                                <h2>사용 기술</h2>
+                                ${renderTechStack(project.techStack)}
+                            </div>
+                        `;
+
+                        // 푸터 설정
+                        const footer = document.querySelector('footer');
+                        footer.innerHTML = `
+                            <p>&copy; ${new Date().getFullYear()} ${data.footer.copyright}. All rights reserved.</p>
+                        `;
+                    } else {
+                        document.querySelector('.project-container').innerHTML = '<p>프로젝트를 찾을 수 없습니다.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching project data:', error);
+                    document.querySelector('.project-container').innerHTML = '<p>데이터를 불러오는 중 오류가 발생했습니다.</p>';
+                });
+        });
+    </script>
+</body>
+</html>
