@@ -174,30 +174,48 @@ document.addEventListener("DOMContentLoaded", () => {
     // Function to set up scroll-to-top navigation
     const setupScrollNav = () => {
         const nav = document.getElementById("scroll-nav");
-        const sections = document.querySelectorAll("main section[id]");
+        const sections = Array.from(document.querySelectorAll("main section[id]"));
+        const navLinks = new Map();
 
+        // Create links and add click listeners
         sections.forEach(section => {
             const link = document.createElement("a");
             link.href = `#${section.id}`;
             link.textContent = section.querySelector("h2").textContent;
+            
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: section.offsetTop - 70, // Adjusted for scroll-margin-top
+                    behavior: "smooth"
+                });
+            });
+
             nav.appendChild(link);
+            navLinks.set(section.id, link);
         });
 
         // Highlight active link on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    document.querySelectorAll("#scroll-nav a").forEach(a => a.classList.remove("active"));
-                    const activeLink = document.querySelector(`#scroll-nav a[href="#${entry.target.id}"]`);
-                    if (activeLink) {
-                        activeLink.classList.add("active");
-                    }
+        const updateActiveLink = () => {
+            let currentSectionId = sections[0].id;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 80; // Match scroll-margin-top
+                if (window.scrollY >= sectionTop) {
+                    currentSectionId = section.id;
                 }
             });
-        }, { rootMargin: "-50% 0px -50% 0px" });
 
-        sections.forEach(section => {
-            observer.observe(section);
-        });
+            navLinks.forEach((link, id) => {
+                if (id === currentSectionId) {
+                    link.classList.add("active");
+                } else {
+                    link.classList.remove("active");
+                }
+            });
+        };
+
+        window.addEventListener("scroll", updateActiveLink);
+        updateActiveLink(); // Initial call to set active link on page load
     };
 });
